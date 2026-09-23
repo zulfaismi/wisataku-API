@@ -1,0 +1,210 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
+    "/destinasi": {
+      "get": {
+        "operationId": "DestinasiController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Berhasil mengambil daftar destinasi."
+          }
+        },
+        "summary": "Menampilkan semua daftar destinasi wisata",
+        "tags": [
+          "destinasi"
+        ]
+      },
+      "post": {
+        "operationId": "DestinasiController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDestinasiDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Destinasi berhasil dibuat."
+          }
+        },
+        "summary": "Menambahkan destinasi wisata baru",
+        "tags": [
+          "destinasi"
+        ]
+      }
+    },
+    "/destinasi/{id}": {
+      "get": {
+        "operationId": "DestinasiController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detail destinasi ditemukan."
+          },
+          "404": {
+            "description": "Destinasi tidak ditemukan."
+          }
+        },
+        "summary": "Menampilkan detail destinasi berdasarkan ID",
+        "tags": [
+          "destinasi"
+        ]
+      },
+      "patch": {
+        "operationId": "DestinasiController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDestinasiDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Destinasi berhasil diperbarui."
+          }
+        },
+        "summary": "Memperbarui data destinasi berdasarkan ID",
+        "tags": [
+          "destinasi"
+        ]
+      },
+      "delete": {
+        "operationId": "DestinasiController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Destinasi berhasil dihapus."
+          }
+        },
+        "summary": "Menghapus destinasi berdasarkan ID",
+        "tags": [
+          "destinasi"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "WisataKu API",
+    "description": "Dokumentasi REST API untuk Layanan WisataKu",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "destinasi",
+      "description": ""
+    }
+  ],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "CreateDestinasiDto": {
+        "type": "object",
+        "properties": {
+          "nama": {
+            "type": "string",
+            "example": "Pantai Kuta",
+            "description": "Nama destinasi wisata"
+          },
+          "lokasi": {
+            "type": "string",
+            "example": "Bali",
+            "description": "Lokasi destinasi"
+          },
+          "deskripsi": {
+            "type": "string",
+            "example": "Pantai indah di Bali",
+            "description": "Deskripsi wisata"
+          },
+          "hargaTiket": {
+            "type": "number",
+            "example": 50000,
+            "description": "Harga tiket masuk dalam Rupiah"
+          }
+        },
+        "required": [
+          "nama",
+          "lokasi",
+          "hargaTiket"
+        ]
+      },
+      "UpdateDestinasiDto": {
+        "type": "object",
+        "properties": {
+          "nama": {
+            "type": "string",
+            "example": "Pantai Kuta",
+            "description": "Nama destinasi wisata"
+          },
+          "lokasi": {
+            "type": "string",
+            "example": "Bali",
+            "description": "Lokasi destinasi"
+          },
+          "deskripsi": {
+            "type": "string",
+            "example": "Pantai indah di Bali",
+            "description": "Deskripsi wisata"
+          },
+          "hargaTiket": {
+            "type": "number",
+            "example": 50000,
+            "description": "Harga tiket masuk dalam Rupiah"
+          }
+        }
+      }
+    }
+  }
+}
